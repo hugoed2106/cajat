@@ -1,0 +1,400 @@
+@font-face {
+    font-family: "Logo";
+    src: url("fonts/A-Regular.otf") format("opentype");
+}
+
+@font-face {
+    font-family: "My Font";
+    src: url(fonts/MiLetra-Regular.otf) format("opentype");
+}
+
+:root {
+    --bg-body: #AF77C4;
+    --bg-app: #D8BAE2;
+    --bg-timeline: #4F1C70;
+    --text-color: #fff;
+    --logo-color: #333;
+    --pw-color: #333;
+    --border-color: #8e44ad;
+    --box-bg: #9955B5;
+    --accent-color: #e0e0e0;
+    --active-color: #d0d0d0;
+}
+
+.dark-mode {
+    --bg-body: #66337B;
+    --bg-app: #341E3D;
+    --bg-timeline: #4F1C70;
+    --text-color: #fff;
+    --logo-color: #fff;
+    --pw-color: #333;
+    --border-color: #8E44AD;
+    --box-bg: #803E9C;
+    --accent-color: #3a3a3a;
+    --active-color: #555555;
+}
+
+.hidden {
+    display: none !important;
+}
+
+/* Estilos Globales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--bg-body);
+    color: var(--text-color);
+    margin: 0;
+    width: 98%;
+    box-sizing: border-box;
+    min-height: 100vh;
+    transition: background-color 0.3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Cabecera (Header) */
+header {
+    display: flex;
+    position: relative;
+    background-color: var(--bg-app);
+    border-bottom: 2px solid var(--border-color);
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+    height: 60px;
+    width: 99%;
+    margin-left: auto;
+}
+
+main {
+    padding: 20px;
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+footer {
+    position:static;
+    text-align: center;
+    align-items: center;
+    padding: 10px;
+    background-color: var(--bg-app);
+    color: var(--logo-color);
+    border-top: 2px solid var(--border-color);
+    height: 65px;
+    width: 100.5%;
+    margin-left: auto;
+    bottom: 0; 
+    border-bottom: 10px solid var(--bg-app);
+}
+
+.start-footer {
+    height: 110px !important;
+}
+
+.logo {
+    font-family: "Logo", sans-serif;
+    font-size: 50px;
+    font-style: italic;
+    font-weight: bold;
+    cursor: pointer;
+    color: var(--logo-color);
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+    cursor: pointer;
+}
+
+.theme-btn {
+    background: none;
+    border: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: var(--text-color);
+    padding: 5px;
+}
+
+.luna-creciente {
+    width: 20px; 
+    height: 20px; 
+    border-radius: 50%; 
+    background-color: transparent; 
+    box-shadow: 5px 3px 0 0 var(--logo-color);
+    margin-right: 10px;
+    margin-bottom: 10px;
+}
+
+.icono-sol {
+  --tamano: 20px;
+  --color: var(--logo-color);
+  width: var(--tamano);
+  height: var(--tamano);
+  position: relative;
+  display: grid;
+  place-items: center;
+}
+
+.icono-sol .centro {
+  width: 50%;
+  height: 50%;
+  border: 2px solid var(--color);
+  background-color: transparent;
+  border-radius: 50%;
+  box-sizing: border-box;
+  z-index: 2;
+}
+
+.icono-sol .rayo {
+  position: absolute;
+  width: 2px;
+  height: 100%;
+  background: linear-gradient(
+    var(--color) 0% 15%, 
+    transparent 15% 85%, 
+    var(--color) 85% 100%
+  );
+  border-radius: 2px;
+}
+
+.icono-sol .r1 { transform: rotate(0deg); }
+.icono-sol .r2 { transform: rotate(45deg); }
+.icono-sol .r3 { transform: rotate(90deg); }
+.icono-sol .r4 { transform: rotate(135deg); }
+
+/* Cajas genéricas con borde redondeado */
+.rounded-box {
+    border: 2px solid var(--border-color);
+    border-radius: 15px;
+    background-color: var(--box-bg);
+    padding: 15px;
+    text-align: center;
+}
+
+.rounded-img {
+    border-radius: 15px;
+    border: 2px solid var(--border-color);
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+}
+
+.img-yes {
+    position: absolute;
+    z-index: 2;
+    right: 100px;
+    top: -100px;
+    width: 420px;
+    object-fit: cover;
+}
+
+h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+}
+
+.date {
+    border-radius: 20px;
+    background-color: var(--box-bg);
+    padding: 8px 15px;
+    text-align: center;
+    display: inline-block;
+}
+
+/* Sección Dinámica (Opciones y recuadro) */
+.dynamic-section {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    align-items: center;
+    width: 100%;
+}
+
+/* Envoltura para permitir el scroll horizontal */
+.timeline-wrapper {
+    width: 100%;
+    overflow-x: auto;
+    padding: 10px 0 20px 0; /* Espacio para la barra de scroll */
+}
+
+/* Personalización de la barra de scroll (Chrome/Edge/Safari) */
+.timeline-wrapper::-webkit-scrollbar {
+    height: 8px;
+}
+.timeline-wrapper::-webkit-scrollbar-track {
+    background: var(--box-bg);
+    border-radius: 4px;
+}
+.timeline-wrapper::-webkit-scrollbar-thumb {
+    background-color: var(--body-bg); /* Color morado */
+    border-radius: 4px;
+}
+
+.options-list {
+    display: flex;
+    gap: 30px; /* Separación entre fechas */
+    width: max-content; /* Crucial: permite que el contenedor crezca y active el scroll */
+    padding: 0 20px;
+    align-items: center;
+    position: relative;
+}
+
+/* La línea continua morada detrás de los botones */
+.options-list::before {
+    content: "";
+    position: absolute;
+    top: 85%;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background-color: var(--bg-timeline); /* Color morado */
+    transform: translateY(-50%);
+    z-index: 0;
+}
+
+.options-list .point {
+    position: relative;
+    z-index: 1;
+    display: inline-flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.options-list .point .date {
+    position: relative;
+    z-index: 1; /* Asegura que la fecha esté por encima de la línea */
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    margin-bottom: 0%;
+}
+
+.option-btn {
+    position: relative;
+    z-index: 1; /* Mantiene el botón por encima de la línea */
+    background-color: var(--bg-app);
+    border: 2px solid var(--bg-timeline); /* Borde morado */
+    border-radius: 50%;
+    width: 20px;
+    height: 20px;
+    display: inline-flex;
+    color: var(--text-color);
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.option-btn:hover {
+    background-color: var(--accent-color);
+}
+
+.option-btn.active {
+    background-color: rgb(132, 42, 190); /* Fondo morado al activarse */
+    color: #ffffff;
+}
+
+.dynamic-content-box {
+    display: flex;
+    flex-direction: column; 
+    gap: 15px;
+    width: 103%;
+    margin-top: 20px;
+    margin-bottom:50px;
+    box-sizing: border-box;
+    min-height: 60px;
+}
+
+.dynamic-content-box.active {
+    display: flex; 
+}
+
+.dynamic-content-box.inactive {
+    display: none; 
+}
+
+/* Sección Media (TXT + Cuadro Grande) */
+.middle-section {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+.large-box {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 25px;
+    border-color: transparent;
+}
+
+/* Sección de Imagen y Textos Laterales */
+.img-text-section {
+    display: flex;
+    gap: 15px;
+    width: 100%;
+}
+
+.img-box {
+    flex: 1;
+    aspect-ratio: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.side-texts {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    justify-content: center;
+}
+
+.side-texts .pill {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+/* Botón/Texto Inferior */
+.bottom-box {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 20px;
+}
+
+.lock-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: .6rem;
+    background-color: var(--box-bg);
+    padding: 1.6rem;
+    border-radius: 15px;
+    border: 2px solid var(--border-color);
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.08);
+    max-width: 420px;
+    width: 100%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+/* --- MEDIA QUERIES (Para pantallas más grandes) --- */
+@media (max-width: 768px) {
+    .error-message {
+        display: block;
+        text-align: center;
+        font-size: 14px;
+    }
+
+    .unlocked-section, .locked-section {
+        display: none;
+    }
+}
