@@ -340,6 +340,7 @@ a {
     box-sizing: border-box;
     padding: 25px;
     border-color: transparent;
+    text-align: justify !important;
 }
 
 /* Sección de Imagen y Textos Laterales */
