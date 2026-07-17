@@ -187,11 +187,17 @@ a {
     z-index: 2;
     right: 100px;
     top: -100px;
-    width: 420px;
+    width: 458px;
     object-fit: cover;
 }
 
-h1, h2, h3, h4, h5, h6 {
+.locked-section h1, h2, h3, h4, h5, h6 {
+    margin: 0;
+    padding: 0;
+    color: var(--text-color);
+}
+
+.unlocked-section h1, h2, h3, h4, h5, h6 {
     margin: 0;
     padding: 0;
     color: var(--text-color);
@@ -386,12 +392,98 @@ h1, h2, h3, h4, h5, h6 {
     margin: 0 auto;
 }
 
-/* --- MEDIA QUERIES (Para pantallas más grandes) --- */
+.error-screen {
+    display: none;
+}
+
+.content {
+    display: flex;
+    align-items: flex-start;
+    gap: 50px;
+    padding: 20px;
+}
+
+.content p {
+    color: black;
+}
+      
+.content p span {
+    color: #5f6368;
+}
+
+.content .icon {
+    height: 50px;
+    width: 50px;
+    border-radius: 25%;
+}
+
+.content .logo {
+    margin-bottom: 20px;
+}
+
+.content .error-text h1 {
+    font-size: 20px;
+    font-weight: normal;
+    margin-bottom: 16px;
+}
+
+.content .error-text h1 span {
+    color: #5f6368;
+    margin-left: 8px;
+}
+
+.content .error-text p {
+    color: black;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.content .error-text p span {
+    color: #5f6368;
+    margin: 0;
+    line-height: 1.5;
+}
+
+.content .robot-image {
+    width: 200px;
+    height: 200px;
+}
+
 @media (max-width: 768px) {
-    .error-message {
+    .content {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+
+    .content .robot-image {
+        width: 150px;
+        height: 150px;
+    }
+
+    .error-screen {
         display: block;
+        width: 98%;
         text-align: center;
         font-size: 14px;
+    }
+
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #fff;
+        color: #333;
+        margin: 0;
+        width: 96%;
+        box-sizing: border-box;
+        min-height: 100vh;
+        transition: background-color 0.3s;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    header, footer {
+        display: none;
     }
 
     .unlocked-section, .locked-section {

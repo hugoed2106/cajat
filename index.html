@@ -4,11 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Wireframe App</title>
+    <link rel="icon" href="images/icon.png" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
 </head>
 <body>
-    <header>
+    <header id="header">
         <a href="https://hugoed2106.github.io/cajat/"><div class="logo" id="logo">F</div></a>
         <button class="theme-btn" id="themeToggle"><div class="luna-creciente"></div></button>
     </header>
@@ -90,7 +91,7 @@
                 <div class="middle-section">
                     <h1 class="date">Cada Año Junto A Ti</h1>
                     <div class="rounded-box large-box">Página dedicada a recordar momentos con Ari.</div>
-                    <img class="img-yes hidden" src="images/yes.png" alt="Foto de Yese">
+                    <img class="img-yes" src="images/yes.png" alt="Foto de Yese">
                 </div>
             </div>
             <div id="box1" class="rounded-box dynamic-content-box inactive">
@@ -256,6 +257,18 @@
                     <input id="remember" type="checkbox"> Recordar en este equipo
                 </label>
             </form>
+        </div>
+    </section>
+    <section id="error" class="error-screen">
+        <div class="content">
+            <div class="error-text">
+                <img src="https://hugoed2106.github.io/cajat/images/icon.png" class="icon">
+                <h1>303. <span>That’s an error</span></h1>
+                <p>Please use a computer</p>
+                <p><span>to view the URL.</span></p>
+            </div>
+
+            <img src="https://programmer-hugo.github.io/ERROR/303/robot.png" alt="Robot illustration" class="robot-image">
         </div>
     </section>
     </main>
