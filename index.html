@@ -15,6 +15,30 @@
     </header>
 
     <main>
+    <section class="locked-section" id="locked">
+        <div class="lock-card rounded-box" role="dialog" aria-labelledby="lockTitle" aria-modal="true" style="margin-top: 100px;">
+            <h2 id="lockTitle">Acceso exclusivo para Aridai</h2>
+            <p>Introduce la contraseña para ver la página.</p>
+
+            <form id="passForm" autocomplete="off">
+                <input id="passInput" type="password" placeholder="Contraseña" required="" style="background-color: #dbdbdb;color:var(--pw-color);padding:.6rem .8rem;border-radius:8px;border:1px solid #ddd;width:100%;max-width:320px;font-size:1rem;">
+                <div style="margin-top:.6rem;display:flex;gap:.5rem;align-items:center;justify-content:center;">
+                    <button type="submit" style="padding:.5rem .8rem;background:var(--bg-timeline);color:var(--text-color);border:none;border-radius:8px;cursor:pointer;font-weight:600;">
+                        Entrar
+                    </button>
+                    <button type="button" id="clearBtn" style="padding:.5rem .8rem;background:#000;border:none;border-radius:8px;cursor:pointer;color:var(--text)">
+                            Borrar
+                    </button>
+                </div>
+
+                <p id="passError" style="color:#c00;margin-top:.6rem;display:none;">Contraseña incorrecta</p>
+
+                <label id="remember-div" style="display: block; margin-top:.6rem; color:var(--muted); font-size:.9rem;">
+                    <input id="remember" type="checkbox"> Recordar en este equipo
+                </label>
+            </form>
+        </div>
+    </section>
     <section class="unlocked-section" id="unlocked">
         <div class="rounded-box dynamic-section">
             <div class="timeline-wrapper">
@@ -223,7 +247,7 @@
             <div id="box10" class="rounded-box dynamic-content-box inactive">
                 <div class="middle-section">
                     <h1 class="date">19/12/2025</h1>
-                    <div class="rounded-box large-box">Contenido del recuadro 2024</div>
+                    <div class="rounded-box large-box">Te pedí que regresases conmigo por primera vez</div>
                 </div>
                 <div class="img-text-section">
                     <div class="rounded-box img-box">IMG</div>
@@ -233,30 +257,85 @@
                     </div>
                 </div>
             </div>
-        </div>
-    </section>
-    <section class="locked-section" id="locked">
-        <div class="lock-card rounded-box" role="dialog" aria-labelledby="lockTitle" aria-modal="true" style="margin-top: 100px;">
-            <h2 id="lockTitle">Acceso exclusivo para Aridai</h2>
-            <p>Introduce la contraseña para ver la página.</p>
 
-            <form id="passForm" autocomplete="off">
-                <input id="passInput" type="password" placeholder="Contraseña" required="" style="background-color: #dbdbdb;color:var(--pw-color);padding:.6rem .8rem;border-radius:8px;border:1px solid #ddd;width:100%;max-width:320px;font-size:1rem;">
-                <div style="margin-top:.6rem;display:flex;gap:.5rem;align-items:center;justify-content:center;">
-                    <button type="submit" style="padding:.5rem .8rem;background:var(--bg-timeline);color:var(--text-color);border:none;border-radius:8px;cursor:pointer;font-weight:600;">
-                        Entrar
-                    </button>
-                    <button type="button" id="clearBtn" style="padding:.5rem .8rem;background:#000;border:none;border-radius:8px;cursor:pointer;color:var(--text)">
-                            Borrar
-                    </button>
+            <div id="box10" class="rounded-box dynamic-content-box inactive">
+                <div class="middle-section">
+                    <h1 class="date">27/01/2026</h1>
+                    <div class="rounded-box large-box"></div>
                 </div>
+                <div class="img-text-section">
+                    <div class="rounded-box img-box">IMG</div>
+                    <div class="side-texts">
+                        <div class="pill">Dato 1</div>
+                        <div class="pill">Dato 2</div>
+                    </div>
+                </div>
+            </div>
 
-                <p id="passError" style="color:#c00;margin-top:.6rem;display:none;">Contraseña incorrecta</p>
+            <div id="box10" class="rounded-box dynamic-content-box inactive">
+                <div class="middle-section">
+                    <h1 class="date">04/2026</h1>
+                    <div class="rounded-box large-box"></div>
+                </div>
+                <div class="img-text-section">
+                    <div class="rounded-box img-box">IMG</div>
+                    <div class="side-texts">
+                        <div class="pill">Dato 1</div>
+                        <div class="pill">Dato 2</div>
+                    </div>
+                </div>
+            </div>
 
-                <label id="remember-div" style="display: block; margin-top:.6rem; color:var(--muted); font-size:.9rem;">
-                    <input id="remember" type="checkbox"> Recordar en este equipo
-                </label>
-            </form>
+            <div id="box10" class="rounded-box dynamic-content-box inactive">
+                <div class="middle-section">
+                    <h1 class="date">05/2026</h1>
+                    <div class="rounded-box large-box"></div>
+                </div>
+                <div class="img-text-section">
+                    <div class="rounded-box img-box">IMG</div>
+                    <div class="side-texts">
+                        <div class="pill">Dato 1</div>
+                        <div class="pill">Dato 2</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="box10" class="rounded-box dynamic-content-box inactive">
+                <div class="middle-section">
+                    <h1 class="date">06/2026</h1>
+                    <div class="rounded-box large-box"></div>
+                </div>
+                <div class="img-text-section">
+                    <div class="rounded-box img-box">IMG</div>
+                    <div class="side-texts">
+                        <div class="pill">Dato 1</div>
+                        <div class="pill">Dato 2</div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="box10" class="rounded-box dynamic-content-box inactive">
+                <div class="middle-section">
+                    <h1 class="date">10/07/2026</h1>
+                    <div class="rounded-box large-box">
+                        Fue la última vez que:<br>
+                        - Nos hablamos en persona<br>
+                        - Nos abrazamos<br>
+                        - Nos vimos<br>
+                        - Nos despedimos<br>
+                        Extrañaré verte, oírte, abrazarte, tocarte, darte besos nobles, darte regalos personalmente, jugar contigo, picarte la cintura, reírnos juntos.<br>
+                        Y primera vez que me diste una carta.
+                    </div>
+                </div>
+                <div class="img-text-section">
+                    <div class="rounded-box img-box">IMG de las cartas.</div>
+                    <div class="side-texts">
+                        <div class="pill">El 10 de Julio del 2026, a las 8:30am</div>
+                        <div class="pill">Me diste dos cartitas que al leerlas recordé lo mucho que te amo, que no sería quien soy sin haberte conocido, sin haber estado contigo, tú me cambiaste mucho y la verdad no sé qué haré sin ti. Realmente aprecio mucho tus cartas y la verdad son las primeras cartas que me han hecho llorar, simplemente no podría explicarte todo lo que siento por ti, gracias por todo y recuerda, no es un adiós, es un hasta luego.</div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </section>
     <section id="error" class="error-screen">
