@@ -23,12 +23,13 @@ themeBtn.addEventListener('click', () => {
 });
 
 (function () {
-    const PASSWORD = "1206"; // Cambia aquí la contraseña si lo deseas
+    const pass = "2"; // Cambia aquí la contraseña si lo deseas
+    const PASSWORD = pass;
     const STORAGE_KEY = "YA130425-unlocked-v1";
 
     const lockedScreen = document.getElementById("locked");
-    const unlockedlockedScreen = document.getElementById('unlocked');
-    const footer = document.getElementById('footer'); 
+    const unlockedScreen = document.getElementById('unlocked');
+    const footer = document.getElementById('footer');
     const form = document.getElementById("passForm");
     const input = document.getElementById("passInput");
     const err = document.getElementById("passError");
@@ -40,21 +41,27 @@ themeBtn.addEventListener('click', () => {
     if (localStorage.getItem(STORAGE_KEY) === "1") {
         lockedScreen.classList.add("hidden");
     } else {
-        unlockedlockedScreen.classList.add('hidden');
+        unlockedScreen.classList.add('hidden');
         footer.classList.add('hidden');
         rememberDiv.classList.add('hidden');
+    }
+    
+    function unlockPage() {
+        if (remember.checked) localStorage.setItem(STORAGE_KEY, "1");
+        lockedScreen.classList.add("hidden");
+        err.style.display = "none";
+        unlockedScreen.classList.remove('hidden');
+        footer.classList.remove('hidden');
+        footer.classList.add('start-footer')
     }
 
     form.addEventListener("submit", function (e) {
         e.preventDefault();
-        const val = input.value || "";
-        if (val === PASSWORD) {
-            if (remember.checked) localStorage.setItem(STORAGE_KEY, "1");
-            lockedScreen.classList.add("hidden");
-            err.style.display = "none";
-            unlockedlockedScreen.classList.remove('hidden'); // Mostrar la lista de poemas
-            footer.classList.remove('hidden'); // Ocultar el menu de inicio
-            footer.classList.add('start-footer'); // Ampliar el footer
+        const val = (input.value || "").trim();
+        const isPasswordCorrect = PASSWORD === "" ? val === "" : val === PASSWORD;
+
+        if (isPasswordCorrect) {
+            unlockPage();
         } else {
             err.style.display = "block";
             input.value = "";
@@ -64,19 +71,46 @@ themeBtn.addEventListener('click', () => {
 
     clearBtn.addEventListener("click", function () {
         input.value = "";
-        err.style.display = "none"; // Ocultar el mensaje de error al limpiar
+        err.style.display = "none";
         input.focus();
     });
 
-    // Permitir Enter y accesibilidad mínima
     input.addEventListener("keydown", function (e) {
-        if (e.key === "Enter") form.requestSubmit();
+        if (e.key === "Enter") {
+            e.preventDefault();
+            form.requestSubmit();
+        }
+    });
+
+    document.addEventListener("keydown", function(e) {
+        if (e.ctrlKey && (e.key === "y" || e.key === "Y")) {
+            if(!unlockPage()) {
+                unlockPage();
+            } else {
+                //recargar la pagina
+                location.reload();
+            }
+        }
     });
 })();
+
+function bh () {
+    const box0 = document.getElementById('box0');
+    const bHome = document.getElementById('home-box');
+
+    if (!box0.style.contains('active')) {
+        bHome.style.add('active')
+        bHome.style.remove('inactive')
+    } else {
+        bHome.style.add('inactive')
+        bHome.style.remove('active')
+    }
+}
 
 // --- Lógica de la Lista de Opciones Dinámica (Línea de Tiempo) ---
 const optionButtons = document.querySelectorAll('.option-btn');
 const dynamicBoxes = document.querySelectorAll('.dynamic-content-box');
+const footer = document.getElementById('footer');
 
 optionButtons.forEach(button => {
     button.addEventListener('click', () => {
