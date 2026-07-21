@@ -7,6 +7,7 @@
     <link rel="icon" href="images/icon.png" type="image/x-icon">
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
+    <!-- div#box$.rounded-box.dynamic-content-box.inactive*6 -->
 </head>
 <body>
     <header id="header">
@@ -21,7 +22,7 @@
             <p>Introduce la contraseña para ver la página.</p>
 
             <form id="passForm" autocomplete="off">
-                <input id="passInput" type="password" placeholder="Contraseña" required="" style="background-color: #dbdbdb;color:var(--pw-color);padding:.6rem .8rem;border-radius:8px;border:1px solid #ddd;width:100%;max-width:320px;font-size:1rem;">
+                <input id="passInput" type="password" placeholder="Contraseña" required="" class="input pw">
                 <div style="margin-top:.6rem;display:flex;gap:.5rem;align-items:center;justify-content:center;">
                     <button type="submit" style="padding:.5rem .8rem;background:var(--bg-timeline);color:var(--text-color);border:none;border-radius:8px;cursor:pointer;font-weight:600;">
                         Entrar
@@ -40,20 +41,19 @@
         </div>
     </section>
     <section class="unlocked-section" id="unlocked">
-        <div id="home-box" class="rounded-box dynamic-content-box inactive">
+        <div id="box0" class="rounded-box dynamic-content-box active">
             <div class="middle-section">
-                <h1 class="date">04/2026</h1>
-                <div class="rounded-box large-box"></div>
-            </div>
-            <div class="img-text-section">
-                <div class="rounded-box img-box">IMG</div>
-                <div class="side-texts">
-                    <div class="pill">Dato 1</div>
-                    <div class="pill">Dato 2</div>
-                </div>
+                <h1 class="date">Cada Año Junto A Ti</h1>
+                <h2 class="date">Para Yeseli Aridai</h2>
+                <div class="rounded-box large-box box-home">Esta página web la hice con cariño para ti. Para que veamos todo lo que hemos pasado y así recordarnos siempre. Y porque ya no nos veremos más en la misma escuela y probablemente nunca.</div>
+                <img class="img-yes" src="images/yes.png" alt="Foto de Yese">
             </div>
         </div>
         <div class="rounded-box dynamic-section">
+            <div class="search-wrapper">
+                <input type="search" id="search" name="search" class="input" placeholder="Buscar recuerdo, fecha o palabra..." autocomplete="off">
+                <div id="searchResults" class="search-results"></div>
+            </div>
             <div class="timeline-wrapper">
                 <div class="options-list">
                     <div class="point hidden">
@@ -123,18 +123,12 @@
                 </div>
             </div>
         </div>
-        <div>
-            <div id="box0" class="rounded-box dynamic-content-box active">
-                <div class="middle-section">
-                    <h1 class="date">Cada Año Junto A Ti</h1>
-                    <div class="rounded-box large-box">Página dedicada a recordar momentos con Ari.</div>
-                    <img class="img-yes" src="images/yes.png" alt="Foto de Yese">
-                </div>
-            </div>
+        <section id="timeline-boxes">
             <div id="box1" class="rounded-box dynamic-content-box inactive">
                 <div class="middle-section">
                     <h1 class="date">4to y 6to de Primaria</h1>
                     <div class=" rounded-box large-box">Empezaste a "acosar" a Jair, él nos dijo y te miré, te me hiciste algo guapa, pensé "tiene potencial", me propuse que serías mi novia o algo así. Al final no te hablé porque empecé a ligarme a alguien.</div>
+                    <p class="hidden">4to, 6to, Primaria, acosar, Jair, miré, guapa, potencial, novia, hablar, ligarme, alguien</p>
                 </div>
             </div>
 
@@ -142,6 +136,7 @@
                 <div class="middle-section">
                     <h1 class="date">Hablamos por primera vez</h1>
                     <div class="rounded-box large-box">En noviembre de ese mismo año le empecé a hablar a Daiana para acercarme a ti,, ya que te estaba buscando para poder hablar contigo. Pero poco a poco fui conociéndola y me empezó a gustar, y luego 6 días antes de pedirle me dió tu insta,, y en vez de ligarte, te pedí ayuda con Dais y lo logré con ella.</div>
+                    <p class="hidden">noviembre, hablar, Daiana, acercarme, buscarte, conocerte, gustar, 6 días, pedirle, Instagram, ayuda, Dais, apoyo, 16 de diciembre de 2024, 7 pm, novio</p>
                 </div>
                 <div class="img-text-section">
                     <img class="rounded-img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTW-2Y8En4LmpyOrtjxDojQEwePm3eTjR_LHzjrdzkVshfeWgB8czwkmbcs&s=10" alt="Imagen de ejemplo">
@@ -156,6 +151,7 @@
                 <div class="middle-section">
                     <h1 class="date">Momentos difíciles</h1>
                     <div class="rounded-box large-box">Te pedí mucha ayuda con Daiana, ya que había empezado a ser muy seca y cortante conmigo,, contigo podía desahogarme de todo eso y siempre me apoyabas y escuchabas. Lo cual agradezco muchíqsimo, ayudabas a que me sintiese mejor.</div>
+                    <p class="hidden">ayuda, Daiana, seca, cortante, desahogarme, apoyo, escuchar, agradecer, sentirme mejor, febrero de 2025, estuviste para mí</p>
                 </div>
                 <div class="img-text-section">
                     <div class="rounded-box img-box">IMG</div>
@@ -170,6 +166,7 @@
                 <div class="middle-section">
                     <h1 class="date">Borrón y cuenta nueva</h1>
                     <div class="rounded-box large-box">A medio mes terminé con Daiana, me la pasé muy mal y tú me ayudabas a sentirme mejor siempre, me podía desahogar contigo hasta noche. Pero también nos conocíamos más y me iba enamorando cada vez más de ti.</div>
+                    <p class="hidden">terminar, Daiana, sentirme mal, desahogo, noche, conocernos, enamorarme, marzo de 2025, gustarme, enamorarme de ti.</p>
                 </div>
                 <div class="img-text-section">
                     <div class="rounded-box img-box">IMG</div>
@@ -184,6 +181,7 @@
                 <div class="middle-section">
                     <h1 class="date">El inicio de nuestra historia</h1>
                     <div class="rounded-box large-box">Realmente me enamoraste en tres semanas, y eso fue suficiente para que te empezara a amar mucho y la verdad, quería que fueras mi novia y lpo logré el 13 de Abril. Pero terminamos el 27 ya que te fuiste con alguien más y hubo algunos problemas.</div>
+                    <p class="hidden">enamoraste, tres semanas, amar, novia, 13 de abril, terminar, 27, alguien más, problemas, historia, enamorado, amor</p>
                 </div>
                 <div class="img-text-section">
                     <div class="rounded-box img-box">IMG</div>
@@ -196,8 +194,13 @@
 
             <div id="box6" class="rounded-box dynamic-content-box inactive">
                 <div class="middle-section">
-                    <h1 class="date">06/2025</h1>
-                    <div class="rounded-box large-box">Contenido del recuadro </div>
+                    <h1 class="date">Junio del 2025</h1>
+                    <div class="rounded-box large-box">
+                        Este mes fue uno de mis favoritos, ya que te pude ver por fin después de mucho.<br>
+                        <br>
+                        Recuerdo que en este mes le fuimos infieles a nuestras parejas del momento, aunque a finales ya no porque según tú, querías cambiar (no cambiaste nada).
+                    </div>
+                    <p class="hidden">junio, favorito, verte, infieles, parejas, cambiar, cumpleaños, regalo, abrazos, beso, olor, 12 de junio de 2025</p>
                 </div>
                 <div class="img-text-section">
                     <div class="rounded-box img-box">IMG</div>
@@ -209,20 +212,6 @@
             </div>
 
             <div id="box7" class="rounded-box dynamic-content-box inactive">
-                <div class="middle-section">
-                    <h1 class="date">12/06/2025</h1>
-                    <div class="rounded-box large-box">Contenido del recuadro </div>
-                </div>
-                <div class="img-text-section">
-                    <div class="rounded-box img-box">IMG</div>
-                    <div class="side-texts">
-                        <div class="pill">Dato 1</div>
-                        <div class="pill">Dato 2</div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="box8" class="rounded-box dynamic-content-box inactive">
                 <div class="middle-section">
                     <h1 class="date">07/2025</h1>
                     <div class="rounded-box large-box">Contenido del recuadro </div>
@@ -236,7 +225,7 @@
                 </div>
             </div>
 
-            <div id="box9" class="rounded-box dynamic-content-box inactive">
+            <div id="box8" class="rounded-box dynamic-content-box inactive">
                 <div class="middle-section">
                     <h1 class="date">19/12/2025</h1>
                     <div class="rounded-box large-box">Te pedí que regresases conmigo por primera vez</div>
@@ -250,7 +239,7 @@
                 </div>
             </div>
 
-            <div id="box10" class="rounded-box dynamic-content-box inactive">
+            <div id="box9" class="rounded-box dynamic-content-box inactive">
                 <div class="middle-section">
                     <h1 class="date">27/01/2026</h1>
                     <div class="rounded-box large-box"></div>
@@ -264,7 +253,7 @@
                 </div>
             </div>
 
-            <div id="box11" class="rounded-box dynamic-content-box inactive">
+            <div id="box10" class="rounded-box dynamic-content-box inactive">
                 <div class="middle-section">
                     <h1 class="date">04/2026</h1>
                     <div class="rounded-box large-box"></div>
@@ -278,7 +267,7 @@
                 </div>
             </div>
 
-            <div id="box12" class="rounded-box dynamic-content-box inactive">
+            <div id="box11" class="rounded-box dynamic-content-box inactive">
                 <div class="middle-section">
                     <h1 class="date">05/2026</h1>
                     <div class="rounded-box large-box"></div>
@@ -292,9 +281,9 @@
                 </div>
             </div>
 
-            <div id="box13" class="rounded-box dynamic-content-box inactive">
+            <div id="box12" class="rounded-box dynamic-content-box inactive">
                 <div class="middle-section">
-                    <h1 class="date">Junio</h1>
+                    <h1 class="date">Junio del 2026</h1>
                     <div class="rounded-box large-box">
                         Fue la primera vez que me mandaste una foto con mayor atrevimiento.<br>
                         <br>
@@ -316,7 +305,7 @@
                 </div>
             </div>
 
-            <div id="box14" class="rounded-box dynamic-content-box inactive">
+            <div id="box13" class="rounded-box dynamic-content-box inactive">
                 <div class="middle-section">
                     <h1 class="date">Clausura del Ciclo Escolar 2025-2026</h1>
                     <div class="rounded-box large-box">
@@ -339,8 +328,7 @@
                     </div>
                 </div>
             </div>
-
-        </div>
+        </section>
     </section>
     <section id="error" class="error-screen">
         <div class="content">

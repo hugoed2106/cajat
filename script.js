@@ -146,3 +146,117 @@ optionButtons.forEach(button => {
         }
     });
 });
+
+// === BUSCADOR CON SUGERENCIAS ===
+const searchInput = document.getElementById('search');
+const searchResults = document.getElementById('searchResults');
+const box0 = document.getElementById('box0');
+const bHome = document.getElementById('home-box');
+
+if (searchInput && searchResults) {
+
+    // Solo las cajas reales de la línea del tiempo
+    const timelineBoxes = Array.from(
+        document.querySelectorAll('#timeline-boxes .dynamic-content-box')
+    );
+
+    function openBox(boxId) {
+        // Ocultar todas las cajas
+        dynamicBoxes.forEach(box => {
+            box.classList.remove('active');
+            box.classList.add('inactive');
+        });
+
+        // Mostrar la seleccionada
+        const targetBox = document.getElementById(boxId);
+        if (targetBox) {
+            targetBox.classList.add('active');
+            targetBox.classList.remove('inactive');
+        }
+
+        // Activar el botón correspondiente
+        optionButtons.forEach(btn => {
+            btn.classList.remove('active');
+            btn.classList.add('inactive');
+
+            if (btn.dataset.target === boxId) {
+                btn.classList.add('active');
+                btn.classList.remove('inactive');
+            }
+        });
+
+        footer.classList.remove('start-footer');
+    }
+
+    function renderResults(matches) {
+        searchResults.innerHTML = '';
+
+        if (matches.length === 0) {
+            searchResults.innerHTML = '<div class="search-empty">Sin resultados</div>';
+            searchResults.style.display = 'block';
+            return;
+        }
+
+        matches.forEach(box => {
+            const title = box.querySelector('h1.date')?.textContent?.trim() || box.id;
+
+            const text = box.querySelector('.large-box')?.textContent?.trim()
+                || box.textContent.trim();
+
+            const preview = text.length > 110
+                ? text.slice(0, 110) + '…'
+                : text;
+
+            const item = document.createElement('div');
+            item.className = 'search-item';
+            item.innerHTML = `
+                <div class="search-item-title">${title}</div>
+                <div class="search-item-preview">${preview}</div>
+            `;
+
+            item.addEventListener('click', () => {
+                openBox(box.id);
+                searchInput.value = '';
+                searchResults.style.display = 'none';
+            });
+
+            searchResults.appendChild(item);
+        });
+
+        searchResults.style.display = 'block';
+    }
+
+    searchInput.addEventListener('input', () => {
+        const query = searchInput.value.toLowerCase().trim();
+
+        if (!query) {
+            searchResults.style.display = 'none';
+            searchResults.innerHTML = '';
+            return;
+        }
+
+        const matches = timelineBoxes.filter(box =>
+            box.id !== 'box0' && box.textContent.toLowerCase().includes(query)
+        );
+
+        renderResults(matches);
+    });
+
+    // Enter abre el primer resultado
+    searchInput.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter') {
+            e.preventDefault();
+
+            const first = searchResults.querySelector('.search-item');
+            if (first) first.click();
+        }
+    });
+
+    // Cerrar al hacer clic fuera
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.search-wrapper')) {
+            searchResults.style.display = 'none';
+            searchInput.value = '';
+        }
+    });
+}
