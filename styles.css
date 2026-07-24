@@ -182,7 +182,7 @@ footer {
     transform: scale(0.12);
     position: absolute;
     margin-top: -60px;
-    margin-left: -650px;
+    margin-left: -750px;
     margin-right: auto;
     height: 0;
     width: 0;
@@ -205,7 +205,7 @@ footer {
     rotate: 40deg;
     position: absolute;
     margin-top: -95px;
-    margin-left: -750px;
+    margin-left: -650px;
     margin-right: auto;
     height: 0;
     width: 0;
@@ -415,7 +415,7 @@ a {
     border: 2px solid var(--bg-timeline); /* Borde morado */
     border-radius: 50%;
     width: 20px;
-
+    height: 20px;
     right: var(--right-sticker);
     display: inline-flex;
     color: var(--text-color);
