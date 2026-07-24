@@ -237,7 +237,7 @@ a {
 
 .luna-creciente {
     width: 20px; 
-
+    height: 20px;
     right: var(--right-sticker); 
     border-radius: 50%; 
     background-color: transparent; 
