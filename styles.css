@@ -22,6 +22,11 @@
     --papel: url(images/Papel\ arrugado\ rosa.png);
 }
 
+:root {
+    --left-sticker: 5px;
+    --right-sticker: 10px;
+}
+
 .dark-mode {
     --bg-body: #66337B;
     --bg-app: #341E3D;
@@ -116,7 +121,7 @@ footer {
 
 .s1 {
     top: 180px;
-    right: 20px;
+    right: var(--right-sticker);
     left: auto;
     rotate: 37deg;
 }
@@ -124,13 +129,13 @@ footer {
 .s2 {
     top: 160px;
     right: auto;
-    left: 20px;
+    left: var(--left-sticker);
     rotate: -37deg;
 }
 
 .s3 {
     top: 340px;
-    right: 20px;
+    right: var(--right-sticker);
     left: auto;
     rotate: 0deg;
 }
@@ -138,13 +143,13 @@ footer {
 .s4 {
     top: 320px;
     right: auto;
-    left: 20px;
+    left: var(--left-sticker);
     rotate: -37deg;
 }
 
 .s5 {
     top: 520px;
-    right: 20px;
+    right: var(--right-sticker);
     left: auto;
     rotate: 37deg;
 }
@@ -152,7 +157,7 @@ footer {
 .s6 {
     top: 500px;
     right: auto;
-    left: 20px;
+    left: var(--left-sticker);
     transform: scaleX(-1);
 }
 
@@ -177,7 +182,7 @@ footer {
     transform: scale(0.12);
     position: absolute;
     margin-top: -60px;
-    margin-left: -900px;
+    margin-left: -650px;
     margin-right: auto;
     height: 0;
     width: 0;
@@ -189,7 +194,7 @@ footer {
     position: absolute;
     margin-top: -120px;
     margin-left: auto;
-    margin-right: -400px;
+    margin-right: -350px;
     height: 0;
     width: 0;
 }
@@ -200,7 +205,7 @@ footer {
     rotate: 40deg;
     position: absolute;
     margin-top: -95px;
-    margin-left: -800px;
+    margin-left: -750px;
     margin-right: auto;
     height: 0;
     width: 0;
@@ -232,7 +237,8 @@ a {
 
 .luna-creciente {
     width: 20px; 
-    height: 20px; 
+
+    right: var(--right-sticker); 
     border-radius: 50%; 
     background-color: transparent; 
     box-shadow: 5px 3px 0 0 var(--logo-color);
@@ -409,7 +415,8 @@ a {
     border: 2px solid var(--bg-timeline); /* Borde morado */
     border-radius: 50%;
     width: 20px;
-    height: 20px;
+
+    right: var(--right-sticker);
     display: inline-flex;
     color: var(--text-color);
     cursor: pointer;
