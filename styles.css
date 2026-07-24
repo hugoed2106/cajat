@@ -307,7 +307,7 @@ a {
 .img-yes {
     position: absolute;
     z-index: 2;
-    right: 120px;
+    right: 80px;
     top: 120px;
     width: 110px;
     object-fit: cover;
