@@ -10,6 +10,12 @@ if (logo) {
     document.head.appendChild(link);
 }
 
+const logo = document.getElementById('logo');
+logo.addEventListener("copy", function(e) {
+    e.preventDefault();
+    e.clipboardData.setData("text/plain", "A");
+});
+
 const themeBtn = document.getElementById('themeToggle');
 
 themeBtn.addEventListener('click', () => {
