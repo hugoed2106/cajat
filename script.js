@@ -1,15 +1,3 @@
-const logo = document.getElementById('logo');
-// Precargar font-family del logo
-if (logo) {
-    const computedStyle = window.getComputedStyle(logo);
-    const fontFamily = computedStyle.fontFamily;
-    const link = document.createElement('link');
-    link.rel = 'preload';
-    link.as = 'font';
-    link.href = fontFamily;
-    document.head.appendChild(link);
-}
-
 const themeBtn = document.getElementById('themeToggle');
 
 themeBtn.addEventListener('click', () => {
