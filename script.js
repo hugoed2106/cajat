@@ -1,14 +1,28 @@
-const themeBtn = document.getElementById('themeToggle');
+(function () {
+    const themeBtn = document.getElementById('themeToggle');
 
-themeBtn.addEventListener('click', () => {
-    document.body.classList.toggle('dark-mode');
+    themeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
 
-    if (document.body.classList.contains('dark-mode')) {
-        themeBtn.innerHTML = '<div class="icono-sol"> <div class="centro"></div> <div class="rayo r1"></div> <div class="rayo r2"></div> <div class="rayo r3"></div> <div class="rayo r4"></div></div>';
-    } else {
-        themeBtn.innerHTML = '<div class="luna-creciente"></div>';
-    }
-});
+        if (document.body.classList.contains('dark-mode')) {
+            themeBtn.innerHTML = '<div class="icono-sol"> <div class="centro"></div> <div class="rayo r1"></div> <div class="rayo r2"></div> <div class="rayo r3"></div> <div class="rayo r4"></div></div>';
+        } else {
+            themeBtn.innerHTML = '<div class="luna-creciente"></div>';
+        }
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.shiftKey && (e.key === "t" || e.key === "T")) {
+            document.body.classList.toggle('dark-mode');
+
+            if (document.body.classList.contains('dark-mode')) {
+                themeBtn.innerHTML = '<div class="icono-sol"> <div class="centro"></div> <div class="rayo r1"></div> <div class="rayo r2"></div> <div class="rayo r3"></div> <div class="rayo r4"></div></div>';
+            } else {
+                themeBtn.innerHTML = '<div class="luna-creciente"></div>';
+            }
+        }
+    })
+})();
 
 (function () {
     const pass = "130425"; // Cambia aquí la contraseña si lo deseas
@@ -17,7 +31,6 @@ themeBtn.addEventListener('click', () => {
 
     const lockedScreen = document.getElementById("locked");
     const unlockedScreen = document.getElementById('unlocked');
-    const footer = document.getElementById('footer');
     const form = document.getElementById("passForm");
     const input = document.getElementById("passInput");
     const err = document.getElementById("passError");
@@ -29,7 +42,6 @@ themeBtn.addEventListener('click', () => {
     if (localStorage.getItem(STORAGE_KEY) === "1") {
         lockedScreen.classList.add("hidden");
         unlockedScreen.classList.remove("hidden")
-        footer.classList.remove('hidden');
     } else {
         rememberDiv.classList.add('hidden');
     }
@@ -39,8 +51,12 @@ themeBtn.addEventListener('click', () => {
         lockedScreen.classList.add("hidden");
         err.style.display = "none";
         unlockedScreen.classList.remove('hidden');
-        footer.classList.remove('hidden');
-        footer.classList.add('start-footer')
+    }
+
+    function lockPage() {
+        lockedScreen.classList.remove("hidden");
+        err.style.display = "none";
+        unlockedScreen.classList.add('hidden');
     }
 
     form.addEventListener("submit", function (e) {
@@ -75,8 +91,7 @@ themeBtn.addEventListener('click', () => {
             if(!unlockPage()) {
                 unlockPage();
             } else {
-                //recargar la pagina
-                location.reload();
+                lockPage();
             }
         }
     });
