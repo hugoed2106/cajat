@@ -11,7 +11,7 @@ themeBtn.addEventListener('click', () => {
 });
 
 (function () {
-    const pass = "2"; // Cambia aquí la contraseña si lo deseas
+    const pass = "130425"; // Cambia aquí la contraseña si lo deseas
     const PASSWORD = pass;
     const STORAGE_KEY = "YA130425-unlocked-v1";
 

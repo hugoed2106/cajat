@@ -23,7 +23,7 @@
             <p>Introduce la contraseña para ver la página.</p>
 
             <form id="passForm" autocomplete="off">
-                <input id="passInput" type="password" placeholder="Contraseña" required="" class="input pw">
+                <input id="passInput" type="password" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" oninput="this.value = this.value.replace(/\D/g, '')" placeholder="Fecha Especial" required="" class="input pw">
                 <div style="margin-top:.6rem;display:flex;gap:.5rem;align-items:center;justify-content:center;">
                     <button type="submit" style="padding:.5rem .8rem;background:var(--bg-timeline);color:var(--text-color);border:none;border-radius:8px;cursor:pointer;font-weight:600;">
                         Entrar
