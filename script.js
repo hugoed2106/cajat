@@ -1,3 +1,4 @@
+//Alternar tema de la página
 (function () {
     const themeBtn = document.getElementById('themeToggle');
 
@@ -24,8 +25,9 @@
     })
 })();
 
+//Bloque y Desbloqueo de la página
 (function () {
-    const pass = "130425"; // Cambia aquí la contraseña si lo deseas
+    const pass = "130425";
     const PASSWORD = pass;
     const STORAGE_KEY = "YA130425-unlocked-v1";
 
@@ -38,7 +40,6 @@
     const rememberDiv = document.getElementById("remember-div");
     const clearBtn = document.getElementById("clearBtn");
 
-    // Si ya está autorizado, ocultar la pantalla de bloqueo
     if (localStorage.getItem(STORAGE_KEY) === "1") {
         lockedScreen.classList.add("hidden");
         unlockedScreen.classList.remove("hidden")
@@ -97,21 +98,92 @@
     });
 })();
 
-// --- Lógica de la Lista de Opciones Dinámica (Línea de Tiempo) ---
+//Galería de Cartas
+(function () {
+    const carta1 = document.getElementById('carta1');
+    const carta2 = document.getElementById('carta2');
+
+    function mostrarOcultar() {
+        if (!carta1.classList.contains('hidden')) {
+            carta1.classList.add('hidden');
+            carta2.classList.remove('hidden');
+        } else {
+            carta1.classList.remove('hidden');
+            carta2.classList.add('hidden');
+        }
+    }
+
+    carta1.addEventListener('click', () => {
+        mostrarOcultar();
+    });
+
+    carta2.addEventListener('click', () => {
+        mostrarOcultar();
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.shiftKey && (e.key === "c" || e.key === "C")){
+            mostrarOcultar();
+        }
+    }
+)
+})();
+
+//Galería de Regalo
+(function () {
+    const r1 = document.getElementById('regalo1');
+    const r2 = document.getElementById('regalo2');
+    const r3 = document.getElementById('regalo3')
+
+    function mostrarOcultar() {
+        if (!r1.classList.contains('hidden')) {
+            r1.classList.add('hidden');
+            r2.classList.remove('hidden');
+        } else {
+            if (!r2.classList.contains('hidden')) {
+                r2.classList.add('hidden');
+                r3.classList.remove('hidden');
+            } else {
+                r1.classList.remove('hidden');
+                r2.classList.add('hidden');
+                r3.classList.add('hidden');
+            }
+        }
+    }
+
+    r1.addEventListener('click', () => {
+        mostrarOcultar();
+    });
+
+    r2.addEventListener('click', () => {
+        mostrarOcultar();
+    });
+
+    r3.addEventListener('click', () => {
+        mostrarOcultar();
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.shiftKey && (e.key === "f" || e.key === "F")){
+            mostrarOcultar();
+        }
+    }
+)
+})();
+
+//Línea del Tiempo
 const optionButtons = document.querySelectorAll('.option-btn');
 const dynamicBoxes = document.querySelectorAll('.dynamic-content-box');
 
 optionButtons.forEach(button => {
     button.addEventListener('click', () => {
         
-        // 1. Apagar todos los botones y ocultar todas las cajas
         optionButtons.forEach(btn => btn.classList.remove('active'));
         dynamicBoxes.forEach(box => {
             box.classList.remove('active');
             box.classList.add('inactive');
         });
 
-        // 2. Encender el botón que el usuario clickeó
         if (button.classList.contains('active')) {
             button.classList.remove('active');
             button.classList.add('inactive');
@@ -120,8 +192,6 @@ optionButtons.forEach(button => {
             button.classList.remove('inactive');
         }
         
-
-        // 3. Mostrar la caja que corresponde a ese botón
         const targetId = button.getAttribute('data-target');
         const targetBox = document.getElementById(targetId);
         
@@ -135,7 +205,7 @@ optionButtons.forEach(button => {
     });
 });
 
-// === BUSCADOR CON SUGERENCIAS ===
+//BUSCADOR
 const searchInput = document.getElementById('search');
 const searchResults = document.getElementById('searchResults');
 const box0 = document.getElementById('box0');
@@ -143,26 +213,22 @@ const bHome = document.getElementById('home-box');
 
 if (searchInput && searchResults) {
 
-    // Solo las cajas reales de la línea del tiempo
     const timelineBoxes = Array.from(
         document.querySelectorAll('#timeline-boxes .dynamic-content-box')
     );
 
     function openBox(boxId) {
-        // Ocultar todas las cajas
         dynamicBoxes.forEach(box => {
             box.classList.remove('active');
             box.classList.add('inactive');
         });
-
-        // Mostrar la seleccionada
+        
         const targetBox = document.getElementById(boxId);
         if (targetBox) {
             targetBox.classList.add('active');
             targetBox.classList.remove('inactive');
         }
-
-        // Activar el botón correspondiente
+        
         optionButtons.forEach(btn => {
             btn.classList.remove('active');
             btn.classList.add('inactive');
@@ -230,7 +296,6 @@ if (searchInput && searchResults) {
         renderResults(matches);
     });
 
-    // Enter abre el primer resultado
     searchInput.addEventListener('keydown', (e) => {
         if (e.key === 'Enter') {
             e.preventDefault();
@@ -240,7 +305,6 @@ if (searchInput && searchResults) {
         }
     });
 
-    // Cerrar al hacer clic fuera
     document.addEventListener('click', (e) => {
         if (!e.target.closest('.search-wrapper')) {
             searchResults.style.display = 'none';

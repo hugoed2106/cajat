@@ -181,20 +181,9 @@ footer {
     content: url(images/stickers/Esfera\ Disco.png);
     transform: scale(0.12);
     position: absolute;
-    margin-top: -60px;
-    margin-left: -750px;
+    margin-top: -40px;
+    margin-left: -730px;
     margin-right: auto;
-    height: 0;
-    width: 0;
-}
-
-.sphere::after {
-    content: url(images/stickers/Snoopy\ Acostado.png);
-    transform: scale(0.5);
-    position: absolute;
-    margin-top: -120px;
-    margin-left: auto;
-    margin-right: -350px;
     height: 0;
     width: 0;
 }
@@ -307,10 +296,26 @@ a {
 .img-yes {
     position: absolute;
     z-index: 2;
-    right: 80px;
-    top: 120px;
-    width: 110px;
     object-fit: cover;
+}
+
+#cartas {
+    border: 2px solid var(--border-color);
+    width: 50%;
+    height: auto;
+    object-fit: cover;
+}
+
+.img1 {
+    right: 80px;
+    top: 100px;
+    width: 138px;
+}
+
+.img2 {
+    left: 80px;
+    top: 105px;
+    width: 133px;
 }
 
 .locked-section h1, h2, h3, h4, h5, h6 {
@@ -432,6 +437,14 @@ a {
     color: #ffffff;
 }
 
+.after_hidden::after {
+    content: none !important;
+}
+
+.before_hidden::before {
+    content: none !important;
+}
+
 .dynamic-content-box {
     display: flex;
     flex-direction: column; 
@@ -449,6 +462,34 @@ a {
 
 .dynamic-content-box.inactive {
     display: none; 
+}
+
+.snoopy::after {
+    content: url(images/stickers/Snoopy\ Acostado.png);
+    transform: scale(0.5);
+    position: absolute;
+    margin-top: 80px;
+    margin-left: 200px;
+    margin-right: auto;
+    height: 0;
+    width: 0;
+}
+
+.after_type12-2025::after {
+    margin-top: 120px !important;   
+}
+
+.after_type04-2026::after {
+    margin-top: 120px !important;   
+}
+
+.after_type06-2026::after {
+    margin-top: 280px !important;   
+}
+
+.after_type10-07-2026::after {
+    margin-top: 190px !important;
+    margin-left: 380px !important;
 }
 
 .activei {
