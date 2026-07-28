@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CAJAT</title>
     <link rel="icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="https://cdn-uicons.flaticon.com/uicons-solid-straight/css/uicons-solid-straight.css">
     <link rel="stylesheet" href="styles.css">
     <script src="script.js" defer></script>
     <!-- div#box$.rounded-box.dynamic-content-box.inactive*6 -->
@@ -12,20 +13,31 @@
 <body class="papel dark-mode">
     <header id="header">
         <a href="https://hugoed2106.github.io/cajat/"><div class="logo" id="logo">F</div></a>
-        <button class="theme-btn" id="themeToggle">
-            <div class="icono-sol">
-                <div class="centro"></div> 
-                <div class="rayo r1"></div> 
-                <div class="rayo r2"></div> 
-                <div class="rayo r3"></div> 
-                <div class="rayo r4"></div>
-            </div>
-        </button>
+        <nav class="options-header">
+            <i class="fi fi-ss-bell hidden" id="notificaciones"></i>
+            <button class="theme-btn" id="themeToggle">
+                <div class="icono-sol">
+                    <div class="centro"></div> 
+                    <div class="rayo r1"></div> 
+                    <div class="rayo r2"></div> 
+                    <div class="rayo r3"></div> 
+                    <div class="rayo r4"></div>
+                </div>
+            </button>
+        </nav>
     </header>
 
     <main>
     <section class="hidden">
         <img src="images/yes/foto1-juntos.png" alt="">
+    </section>
+    <section class="not hidden" id="not-div">
+        <button id="close">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor">
+                <path d="M18.3 5.71 12 12l6.3 6.29-1.41 1.41L10.59 13.41 4.29 19.71 2.88 18.3 9.17 12 2.88 5.71 4.29 4.29l6.3 6.3 6.29-6.3z"/>
+            </svg>
+        </button>
+        <span class="notifies" id="no-hay">No hay notificaciones</span>
     </section>
     <section class="locked-section" id="locked">
         <div class="lock-card" role="dialog" aria-labelledby="lockTitle" aria-modal="true" style="margin-top: 100px;">

@@ -3,11 +3,6 @@
     src: url("fonts/A-Regular.otf") format("opentype");
 }
 
-@font-face {
-    font-family: "My Font";
-    src: url(fonts/MiLetra-Regular.otf) format("opentype");
-}
-
 :root {
     --bg-body: #b077c4a9;
     --bg-app: #D8BAE2;
@@ -16,6 +11,7 @@
     --logo-color: #333;
     --pw-color: #333;
     --border-color: #8e44ad;
+    --notifies-color: rgba(0,0,0,0.5);
     --box-bg: #9955B5;
     --accent-color: #e0e0e0;
     --active-color: #d0d0d0;
@@ -35,6 +31,7 @@
     --logo-color: #fff;
     --pw-color: #333;
     --border-color: #8E44AD;
+    --notifies-color: rgba(250,250,250,0.5);
     --box-bg: #803E9C;
     --accent-color: #3a3a3a;
     --active-color: #555555;
@@ -46,7 +43,7 @@
 }
 
 .papel {
-    background-image: var(--papel) !important;
+    background-image: var(--papel);
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -77,7 +74,7 @@ header {
     align-items: center;
     padding: 15px 20px;
     height: 60px;
-    width: 99%;
+    width: 98%;
     margin-left: auto;
 }
 
@@ -110,6 +107,38 @@ footer {
 
 .footer-script1 {
     height: 200px !important;
+}
+
+.not {
+    background-color: var(--bg-app);
+    position: absolute;
+    z-index: 12;
+    border-radius: 15px;
+    padding: 20px;
+    align-content: center;
+    justify-content: center;
+    margin-left: 15%;
+    height: auto;
+    width: 50%;
+    min-height: 100px;
+}
+
+.notifies {
+    text-align: center;
+    margin-left: 130px;
+    color: var(--notifies-color);
+}
+
+#close {
+    background-color: rgba(1, 1, 1, 0);
+    position: absolute;
+    top: 15px;
+    right: 10px;
+    border: none;
+}
+
+svg {
+    color: var(--logo-color);
 }
 
 .sticker {
@@ -215,6 +244,23 @@ a {
     cursor: pointer;
 }
 
+nav {
+    display: grid;
+    grid-auto-flow: column;
+    align-items: start;
+}
+
+.options-header {
+    padding: 10px;
+    align-content: center;
+    gap: 10px;
+}
+
+.fi-ss-bell {
+    font-size: 20px;
+    color: var(--logo-color);
+}
+
 .theme-btn {
     background: none;
     border: none;
@@ -222,6 +268,8 @@ a {
     cursor: pointer;
     color: var(--text-color);
     padding: 5px;
+    height: 20px;
+    width: 10px;
 }
 
 .luna-creciente {
@@ -231,40 +279,40 @@ a {
     border-radius: 50%; 
     background-color: transparent; 
     box-shadow: 5px 3px 0 0 var(--logo-color);
+    margin-top: -9px;
     margin-right: 10px;
-    margin-bottom: 10px;
 }
 
 .icono-sol {
-  --tamano: 20px;
-  --color: var(--logo-color);
-  width: var(--tamano);
-  height: var(--tamano);
-  position: relative;
-  display: grid;
-  place-items: center;
+    --tamano: 20px;
+    --color: var(--logo-color);
+    width: var(--tamano);
+    height: var(--tamano);
+    position: relative;
+    display: grid;
+    place-items: center;
 }
 
 .icono-sol .centro {
-  width: 50%;
-  height: 50%;
-  border: 2px solid var(--color);
-  background-color: transparent;
-  border-radius: 50%;
-  box-sizing: border-box;
-  z-index: 2;
+    width: 50%;
+    height: 50%;
+    border: 2px solid var(--color);
+    background-color: transparent;
+    border-radius: 50%;
+    box-sizing: border-box;
+    z-index: 2;
 }
 
 .icono-sol .rayo {
-  position: absolute;
-  width: 2px;
-  height: 100%;
-  background: linear-gradient(
+    position: absolute;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(
     var(--color) 0% 15%, 
     transparent 15% 85%, 
     var(--color) 85% 100%
-  );
-  border-radius: 2px;
+    );
+    border-radius: 2px;
 }
 
 .icono-sol .r1 { transform: rotate(0deg); }
@@ -739,6 +787,11 @@ a {
         width: 98%;
         text-align: center;
         font-size: 14px;
+    }
+
+    .papel {
+        background-color: #fff !important;
+        background-image: none !important;
     }
 
     body {

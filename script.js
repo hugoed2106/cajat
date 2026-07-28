@@ -1,29 +1,19 @@
-//Alternar tema de la página
-(function () {
-    const themeBtn = document.getElementById('themeToggle');
+const logo = document.getElementById('logo')
 
-    themeBtn.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
-
-        if (document.body.classList.contains('dark-mode')) {
-            themeBtn.innerHTML = '<div class="icono-sol"> <div class="centro"></div> <div class="rayo r1"></div> <div class="rayo r2"></div> <div class="rayo r3"></div> <div class="rayo r4"></div></div>';
-        } else {
-            themeBtn.innerHTML = '<div class="luna-creciente"></div>';
-        }
-    });
-
-    document.addEventListener('keydown', function (e) {
-        if (e.shiftKey && (e.key === "t" || e.key === "T")) {
-            document.body.classList.toggle('dark-mode');
-
-            if (document.body.classList.contains('dark-mode')) {
-                themeBtn.innerHTML = '<div class="icono-sol"> <div class="centro"></div> <div class="rayo r1"></div> <div class="rayo r2"></div> <div class="rayo r3"></div> <div class="rayo r4"></div></div>';
-            } else {
-                themeBtn.innerHTML = '<div class="luna-creciente"></div>';
-            }
-        }
-    })
-})();
+if (logo) {
+    logo.style.visibility = 'hidden';
+    if (document.fonts && document.fonts.load) {
+        document.fonts.load('1em "Logo"').then(() => {
+            logo.style.visibility = 'visible';
+        }).catch(() => {
+            logo.style.visibility = 'visible';
+        });
+    } else {
+        window.addEventListener('load', () => {
+            logo.style.visibility = 'visible';
+        });
+    }
+}
 
 //Bloque y Desbloqueo de la página
 (function () {
@@ -39,6 +29,7 @@
     const remember = document.getElementById("remember");
     const rememberDiv = document.getElementById("remember-div");
     const clearBtn = document.getElementById("clearBtn");
+    const not = document.getElementById("notificaciones")
 
     if (localStorage.getItem(STORAGE_KEY) === "1") {
         lockedScreen.classList.add("hidden");
@@ -52,12 +43,14 @@
         lockedScreen.classList.add("hidden");
         err.style.display = "none";
         unlockedScreen.classList.remove('hidden');
+        not.classList.remove('hidden');
     }
 
     function lockPage() {
         lockedScreen.classList.remove("hidden");
         err.style.display = "none";
         unlockedScreen.classList.add('hidden');
+        not.classList.add('hidden');
     }
 
     form.addEventListener("submit", function (e) {
@@ -88,7 +81,7 @@
     });
 
     document.addEventListener("keydown", function(e) {
-        if (e.ctrlKey && (e.key === "y" || e.key === "Y")) {
+        if (e.ctrlKey && (e.key === "y" || e.key === "Y") || e.shiftKey && (e.key === "y" || e.key === "Y")) {
             if(!unlockPage()) {
                 unlockPage();
             } else {
@@ -97,6 +90,70 @@
         }
     });
 })();
+
+// Notis
+(function () {
+    const not = document.getElementById('notificaciones');
+    const notifies = document.getElementById('not-div');
+    const close = document.getElementById('close')
+    const empty = document.getElementById('no-hay');
+
+    function closeNotis() {
+        if (!notifies.classList.contains('hidden')) {
+            notifies.classList.add('hidden');
+        } 
+    }
+
+    function abrirCerrarNotis() {
+        if (notifies.classList.contains('hidden')) {
+            notifies.classList.remove('hidden');
+        } else {
+            notifies.classList.add('hidden')
+        }
+    }
+
+    not.addEventListener('click', () => {
+        abrirCerrarNotis();
+    })
+
+    close.addEventListener('click', () => {
+        closeNotis();
+    })
+
+    document.addEventListener('keydown', function (e) {
+        if (e.shiftKey && (e.key === "n" || e.key === "N")) {
+            abrirCerrarNotis();
+        }
+    })
+})();
+
+//Alternar tema de la página
+(function () {
+    const themeBtn = document.getElementById('themeToggle');
+
+    themeBtn.addEventListener('click', () => {
+        document.body.classList.toggle('dark-mode');
+
+        if (document.body.classList.contains('dark-mode')) {
+            themeBtn.innerHTML = '<div class="icono-sol"> <div class="centro"></div> <div class="rayo r1"></div> <div class="rayo r2"></div> <div class="rayo r3"></div> <div class="rayo r4"></div></div>';
+        } else {
+            themeBtn.innerHTML = '<div class="luna-creciente"></div>';
+        }
+    });
+
+    document.addEventListener('keydown', function (e) {
+        if (e.shiftKey && (e.key === "t" || e.key === "T")) {
+            document.body.classList.toggle('dark-mode');
+
+            if (document.body.classList.contains('dark-mode')) {
+                themeBtn.innerHTML = '<div class="icono-sol"> <div class="centro"></div> <div class="rayo r1"></div> <div class="rayo r2"></div> <div class="rayo r3"></div> <div class="rayo r4"></div></div>';
+            } else {
+                themeBtn.innerHTML = '<div class="luna-creciente"></div>';
+            }
+        }
+    })
+})();
+
 
 //Galería de Cartas
 (function () {
