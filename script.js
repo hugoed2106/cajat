@@ -1,3 +1,23 @@
+// Detección de "móvil en vertical" por JS.
+// Safari (iOS y macOS) no siempre recalcula bien la media feature
+// "orientation" de CSS al girar la pantalla, así que aquí se mide
+// directamente el ancho/alto reales de la ventana.
+(function () {
+    const MOBILE_BREAKPOINT = 768;
+
+    function updateOrientationClass() {
+        const width = window.innerWidth;
+        const height = window.innerHeight;
+        const isMobilePortrait = width <= MOBILE_BREAKPOINT && height > width;
+        document.body.classList.toggle('is-mobile-portrait', isMobilePortrait);
+    }
+
+    window.addEventListener('resize', updateOrientationClass);
+    window.addEventListener('orientationchange', updateOrientationClass);
+    document.addEventListener('DOMContentLoaded', updateOrientationClass);
+    updateOrientationClass();
+})();
+
 const logo = document.getElementById('logo')
 
 if (logo) {
