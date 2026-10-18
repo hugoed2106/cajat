@@ -24,6 +24,7 @@
                     <div class="rayo r4"></div>
                 </div>
             </button>
+            <button id="logoutBtn" class="hidden" style="background:none;border:none;color:inherit;cursor:pointer;">Salir</button>
         </nav>
     </header>
 
@@ -45,18 +46,27 @@
             <h2 id="lockTitle">Acceso exclusivo para Ari</h2>
             <p>Introduce la contraseña para ver la página.</p>
 
-            <form id="passForm" autocomplete="off">
-                <input id="passInput" type="password" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" oninput="this.value = this.value.replace(/\D/g, '')" placeholder="Fecha Especial (DD/MM/AA)" required="" class="input pw">
-                <div style="margin-top:.6rem;display:flex;gap:.5rem;align-items:center;justify-content:center;">
-                    <button type="submit" style="padding:.5rem .8rem;background:var(--bg-timeline);color:var(--text-color);border:none;border-radius:8px;cursor:pointer;font-weight:600;">
-                        Entrar
-                    </button>
-                    <button type="button" id="clearBtn" style="padding:.5rem .8rem;background:#000;border:none;border-radius:8px;cursor:pointer;color:#fff">
-                        Borrar
-                    </button>
-                </div>
+            <form id="passForm" autocomplete="on">
+                <section hidden>
+                    <input id="passInput" type="password" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" oninput="this.value = this.value.replace(/\D/g, '')" placeholder="Fecha Especial (DD/MM/AA)" required="" class="input pw">
+                    <div style="margin-top:.6rem;display:flex;gap:.5rem;align-items:center;justify-content:center;">
+                        <button type="submit" style="padding:.5rem .8rem;background:var(--bg-timeline);color:var(--text-color);border:none;border-radius:8px;cursor:pointer;font-weight:600;">
+                            Entrar
+                        </button>
+                        <button type="button" id="clearBtn" style="padding:.5rem .8rem;background:#000;border:none;border-radius:8px;cursor:pointer;color:#fff">
+                            Borrar
+                        </button>
+                    </div>
+                    <p id="passError" style="color:#c00;margin-top:.6rem;display:none;">Contraseña incorrecta</p>
+                </section>
 
-                <p id="passError" style="color:#c00;margin-top:.6rem;display:none;">Contraseña incorrecta</p>
+                <div class="social-login" style="margin-top:1rem;display:flex;flex-direction:column;gap:.5rem;align-items:center;">
+                    <span style="font-size:.85rem;opacity:.7;">Inicia sesión con</span>
+                    <button type="button" id="googleLoginBtn" style="padding:.5rem 1rem;min-width:200px;border:none;border-radius:8px;cursor:pointer;font-weight:600;background:#fff;color:#222;">
+                        Continuar con Google
+                    </button>
+                    <p id="authError" style="color:#c00;display:none;margin:0;"></p>
+                </div>
 
                 <label id="remember-div" class="hidden" style="display: block; margin-top:.6rem; color:var(--muted); font-size:.9rem;">
                     <input id="remember" type="checkbox"> Recordar en este equipo
@@ -386,5 +396,6 @@
         </div>
     </section>
     </main>
+    <script type="module" src="auth.js"></script>
 </body>
 </html>
