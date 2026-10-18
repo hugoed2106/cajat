@@ -134,6 +134,36 @@ footer {
     color: var(--notifies-color);
 }
 
+.notif-list {
+    display: grid;
+    gap: 10px;
+    max-height: 60vh;
+    overflow-y: auto;
+    padding-right: 30px;
+}
+
+.notif-item {
+    background-color: var(--box-bg);
+    color: var(--text-color);
+    border-radius: 10px;
+    padding: 10px 14px;
+}
+
+.notif-item strong {
+    display: block;
+    margin-bottom: 4px;
+}
+
+.notif-item p {
+    margin: 0 0 4px;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+}
+
+.notif-item small {
+    opacity: .7;
+}
+
 #close {
     background-color: rgba(1, 1, 1, 0);
     position: absolute;

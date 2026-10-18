@@ -8,6 +8,13 @@ import {
   onAuthStateChanged,
   signOut,
 } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
+import {
+  getFirestore,
+  collection,
+  query,
+  orderBy,
+  onSnapshot,
+} from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyCJzSoPEMdaN1YPObBzRyONZrjunqRPw2Q",
@@ -24,6 +31,7 @@ const ALLOWED_EMAILS = ["hugo.ed2106@gmail.com", "buclonyeseli@icloud.com"];
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 auth.languageCode = "es";
+const db = getFirestore(app);
 
 const lockedScreen = document.getElementById("locked");
 const unlockedScreen = document.getElementById("unlocked");
@@ -31,6 +39,8 @@ const notifBell = document.getElementById("notificaciones");
 const googleBtn = document.getElementById("googleLoginBtn");
 const authError = document.getElementById("authError");
 const logoutBtn = document.getElementById("logoutBtn");
+const notifList = document.getElementById("notif-list");
+const notifEmpty = document.getElementById("no-hay");
 
 const googleProvider = new GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: "select_account" });
@@ -45,11 +55,63 @@ function setLoading(isLoading) {
   if (googleBtn) googleBtn.disabled = isLoading;
 }
 
+// ---- Notificaciones (las publica el panel /admin) ----
+let unsubNotifs = null;
+
+function renderNotifs(docs) {
+  if (!notifList) return;
+  notifList.replaceChildren();
+  notifEmpty?.classList.toggle("hidden", docs.length > 0);
+
+  docs.forEach((d) => {
+    const data = d.data();
+    const item = document.createElement("article");
+    item.className = "notif-item";
+
+    if (data.titulo) {
+      const title = document.createElement("strong");
+      title.textContent = data.titulo;
+      item.appendChild(title);
+    }
+
+    const msg = document.createElement("p");
+    msg.textContent = data.mensaje;
+    item.appendChild(msg);
+
+    if (data.creada?.toDate) {
+      const date = document.createElement("small");
+      date.textContent = data.creada
+        .toDate()
+        .toLocaleString("es-MX", { dateStyle: "medium", timeStyle: "short" });
+      item.appendChild(date);
+    }
+
+    notifList.appendChild(item);
+  });
+}
+
+function startNotifications() {
+  if (unsubNotifs || !notifList) return;
+  const q = query(collection(db, "notificaciones"), orderBy("creada", "desc"));
+  unsubNotifs = onSnapshot(
+    q,
+    (snap) => renderNotifs(snap.docs),
+    (err) => console.error("Notificaciones:", err)
+  );
+}
+
+function stopNotifications() {
+  if (unsubNotifs) unsubNotifs();
+  unsubNotifs = null;
+  renderNotifs([]);
+}
+
 function unlockPage() {
   lockedScreen?.classList.add("hidden");
   unlockedScreen?.classList.remove("hidden");
   notifBell?.classList.remove("hidden");
   logoutBtn?.classList.remove("hidden");
+  startNotifications();
   showError("");
 }
 
@@ -58,6 +120,7 @@ function lockPage() {
   unlockedScreen?.classList.add("hidden");
   notifBell?.classList.add("hidden");
   logoutBtn?.classList.add("hidden");
+  stopNotifications();
 }
 
 function isAllowed(user) {
