@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Admin · Notificaciones</title>
+    <link rel="icon" href="../images/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="style.css">
+    <script type="module" src="script.js"></script>
+</head>
+<body>
+    <!-- Pantalla de inicio de sesión -->
+    <main id="login" class="card center">
+        <h1>Panel de administración</h1>
+        <p class="muted">Inicia sesión con Google para gestionar las notificaciones.</p>
+        <button id="googleLoginBtn" class="btn primary">Iniciar sesión con Google</button>
+        <p id="authError" class="error" hidden></p>
+    </main>
+
+    <!-- Panel (solo visible para el administrador) -->
+    <div id="panel" class="hidden">
+        <header class="topbar">
+            <h1>Notificaciones</h1>
+            <div class="user">
+                <span id="userEmail" class="muted"></span>
+                <button id="logoutBtn" class="btn">Salir</button>
+            </div>
+        </header>
+
+        <main class="content">
+            <section class="card">
+                <h2>Nueva notificación</h2>
+                <form id="notifForm" autocomplete="off">
+                    <label for="titulo">Título (opcional)</label>
+                    <input id="titulo" type="text" maxlength="80" placeholder="Ej. Sorpresa 💜">
+
+                    <label for="mensaje">Mensaje</label>
+                    <textarea id="mensaje" rows="4" maxlength="500" placeholder="Escribe la notificación…" required></textarea>
+                    <div class="counter"><span id="count">0</span>/500</div>
+
+                    <button type="submit" id="sendBtn" class="btn primary">Publicar</button>
+                    <p id="formMsg" class="muted" hidden></p>
+                </form>
+            </section>
+
+            <section class="card">
+                <h2>Publicadas</h2>
+                <ul id="list" class="list"></ul>
+                <p id="empty" class="muted">Todavía no hay notificaciones.</p>
+            </section>
+        </main>
+    </div>
+</body>
+</html>
