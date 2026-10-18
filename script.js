@@ -151,27 +151,21 @@ if (logo) {
 (function () {
     const themeBtn = document.getElementById('themeToggle');
 
-    themeBtn.addEventListener('click', () => {
-        document.body.classList.toggle('dark-mode');
+    const SUN = '<div class="icono-sol"><div class="centro"></div><div class="rayo r1"></div><div class="rayo r2"></div><div class="rayo r3"></div><div class="rayo r4"></div></div>';
+    const MOON = '<div class="luna-creciente"></div>';
 
-        if (document.body.classList.contains('dark-mode')) {
-            themeBtn.innerHTML = '<div class="icono-sol"> <div class="centro"></div> <div class="rayo r1"></div> <div class="rayo r2"></div> <div class="rayo r3"></div> <div class="rayo r4"></div></div>';
-        } else {
-            themeBtn.innerHTML = '<div class="luna-creciente"></div>';
-        }
-    });
+    function toggleTheme() {
+        const isDark = document.body.classList.toggle('dark-mode');
+        themeBtn.innerHTML = isDark ? SUN : MOON;
+    }
+
+    themeBtn.addEventListener('click', toggleTheme);
 
     document.addEventListener('keydown', function (e) {
         if (e.shiftKey && (e.key === "t" || e.key === "T")) {
-            document.body.classList.toggle('dark-mode');
-
-            if (document.body.classList.contains('dark-mode')) {
-                themeBtn.innerHTML = '<div class="icono-sol"> <div class="centro"></div> <div class="rayo r1"></div> <div class="rayo r2"></div> <div class="rayo r3"></div> <div class="rayo r4"></div></div>';
-            } else {
-                themeBtn.innerHTML = '<div class="luna-creciente"></div>';
-            }
+            toggleTheme();
         }
-    })
+    });
 })();
 
 

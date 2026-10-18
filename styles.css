@@ -50,12 +50,17 @@
 }
 
 /* Estilos Globales */
+html {
+    overflow-x: hidden;
+}
+
 body {
     font-family: Arial, sans-serif;
     background-color: var(--bg-body);
     color: var(--text-color);
     margin: 0;
-    width: 97%;
+    width: 100%;
+    overflow-x: clip;
     box-sizing: border-box;
     min-height: 100vh;
     transition: background-color 0.3s;
@@ -74,8 +79,8 @@ header {
     align-items: center;
     padding: 15px 20px;
     height: 60px;
-    width: 98%;
-    margin-left: auto;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 main {
@@ -95,8 +100,8 @@ footer {
     color: var(--logo-color);
     border-top: 2px solid var(--border-color);
     height: 70px;
-    width: 100.5%;
-    margin-left: auto;
+    width: 100%;
+    box-sizing: border-box;
     bottom: 0; 
     border-bottom: 10px solid var(--bg-app);
 }
@@ -245,42 +250,42 @@ a {
 }
 
 nav {
-    display: grid;
-    grid-auto-flow: column;
-    align-items: start;
+    display: flex;
+    align-items: center;
 }
 
 .options-header {
-    padding: 10px;
-    align-content: center;
-    gap: 10px;
+    gap: 14px;
+    height: 100%;
 }
 
 .fi-ss-bell {
     font-size: 20px;
+    line-height: 1;
     color: var(--logo-color);
 }
 
 .theme-btn {
     background: none;
     border: none;
-    font-size: 20px;
     cursor: pointer;
     color: var(--text-color);
-    padding: 5px;
-    height: 20px;
-    width: 10px;
+    padding: 0;
+    width: 28px;
+    height: 28px;
+    flex: none;
+    display: grid;
+    place-items: center;
 }
 
 .luna-creciente {
-    width: 20px; 
-    height: 20px;
-    right: var(--right-sticker); 
-    border-radius: 50%; 
-    background-color: transparent; 
-    box-shadow: 5px 3px 0 0 var(--logo-color);
-    margin-top: -9px;
-    margin-right: 10px;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    box-sizing: border-box;
+    background-color: transparent;
+    box-shadow: inset -5px -2px 0 0 var(--logo-color);
+    transform: rotate(-20deg);
 }
 
 .icono-sol {
@@ -397,7 +402,8 @@ nav {
     flex-direction: column;
     gap: 20px;
     align-items: center;
-    width: 97%;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* Envoltura para permitir el scroll horizontal */
@@ -497,7 +503,7 @@ nav {
     display: flex;
     flex-direction: column; 
     gap: 15px;
-    width: 103%;
+    width: 100%;
     margin-top: 20px;
     margin-bottom:50px;
     box-sizing: border-box;
@@ -512,32 +518,32 @@ nav {
     display: none; 
 }
 
-.snoopy::after {
-    content: url(images/stickers/Snoopy\ Acostado.png);
-    transform: scale(0.5);
+/* Contenedor de foto: el sticker de Snoopy queda centrado en la esquina
+   superior derecha (mitad fuera, mitad dentro de la foto). */
+.photo-frame {
+    --snoopy-size: 110px;
+    position: relative;
+    width: 50%;
+    flex: none;
+}
+
+.photo-frame .rounded-img {
+    display: block;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.photo-frame.snoopy::after {
+    content: "";
     position: absolute;
-    margin-top: 80px;
-    margin-left: 200px;
-    margin-right: auto;
-    height: 0;
-    width: 0;
-}
-
-.after_type12-2025::after {
-    margin-top: 120px !important;   
-}
-
-.after_type04-2026::after {
-    margin-top: 120px !important;   
-}
-
-.after_type06-2026::after {
-    margin-top: 280px !important;   
-}
-
-.after_type10-07-2026::after {
-    margin-top: 190px !important;
-    margin-left: 380px !important;
+    top: 0;
+    right: 0;
+    width: var(--snoopy-size);
+    aspect-ratio: 420 / 460;
+    background: url("images/stickers/Snoopy Acostado.png") center / contain no-repeat;
+    transform: translate(50%, -50%);
+    pointer-events: none;
+    z-index: 5;
 }
 
 .activei {
@@ -890,11 +896,11 @@ body.is-mobile-portrait .locked-section {
 }
 
 .logout-btn {
-    margin-left: 18px;
+    flex: none;
     background: none;
-    border: 1px solid var(--text-color);
+    border: 1px solid var(--logo-color);
     border-radius: 8px;
-    color: var(--text-color);
+    color: var(--logo-color);
     font: inherit;
     font-size: .85rem;
     padding: .3rem .7rem;
