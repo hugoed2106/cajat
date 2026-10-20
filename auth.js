@@ -26,7 +26,7 @@ const firebaseConfig = {
 };
 
 // ["ari@gmail.com", "tucorreo@gmail.com"]
-const ALLOWED_EMAILS = ["hugo.ed2106@gmail.com", "buclonyeseli@icloud.com"];
+const ALLOWED_EMAILS = ["hugo.ed2106@gmail.com", "buclonyeseli@icloud.com","buclonyeseli718@gmail.com"];
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
