@@ -111,6 +111,7 @@ function unlockPage() {
   unlockedScreen?.classList.remove("hidden");
   notifBell?.classList.remove("hidden");
   logoutBtn?.classList.remove("hidden");
+  closeEmailForm();
   startNotifications();
   showError("");
 }
@@ -183,6 +184,32 @@ const emailInput = document.getElementById("emailInput");
 const passwordInput = document.getElementById("passwordInput");
 const emailLoginBtn = document.getElementById("emailLoginBtn");
 const resetBtn = document.getElementById("resetBtn");
+const openEmailBtn = document.getElementById("openEmailBtn");
+const closeEmailBtn = document.getElementById("closeEmailBtn");
+const emailError = document.getElementById("emailError");
+
+function showEmailError(msg) {
+  if (!emailError) return;
+  emailError.textContent = msg;
+  emailError.style.display = msg ? "block" : "none";
+}
+
+function openEmailForm() {
+  showEmailError("");
+  emailForm?.classList.add("open");
+  emailInput?.focus();
+}
+
+function closeEmailForm() {
+  emailForm?.classList.remove("open");
+  showEmailError("");
+}
+
+openEmailBtn?.addEventListener("click", openEmailForm);
+closeEmailBtn?.addEventListener("click", closeEmailForm);
+document.addEventListener("keydown", (e) => {
+  if (e.key === "Escape") closeEmailForm();
+});
 
 function emailErrorMessage(err) {
   switch (err.code) {
@@ -205,7 +232,7 @@ function emailErrorMessage(err) {
 
 emailForm?.addEventListener("submit", async (e) => {
   e.preventDefault();
-  showError("");
+  showEmailError("");
   emailLoginBtn.disabled = true;
   try {
     await signInWithEmailAndPassword(
@@ -216,7 +243,7 @@ emailForm?.addEventListener("submit", async (e) => {
     passwordInput.value = "";
   } catch (err) {
     console.error("Auth error:", err);
-    showError(emailErrorMessage(err));
+    showEmailError(emailErrorMessage(err));
   } finally {
     emailLoginBtn.disabled = false;
   }
@@ -224,12 +251,12 @@ emailForm?.addEventListener("submit", async (e) => {
 
 resetBtn?.addEventListener("click", async () => {
   const email = emailInput.value.trim();
-  if (!email) return showError("Escribe tu correo para enviarte el enlace.");
+  if (!email) return showEmailError("Escribe tu correo para enviarte el enlace.");
   try {
     await sendPasswordResetEmail(auth, email);
-    showError("Te enviamos un correo para restablecer la contraseña.");
+    showEmailError("Te enviamos un correo para restablecer la contraseña.");
   } catch (err) {
-    showError(emailErrorMessage(err));
+    showEmailError(emailErrorMessage(err));
   }
 });
 

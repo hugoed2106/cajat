@@ -417,7 +417,6 @@ nav {
     z-index: 100;
     width: min(90vw, 340px);
     padding: 24px 20px 20px;
-    display: none;
     flex-direction: column;
     gap: 10px;
     background-color: var(--bg-app);
@@ -446,6 +445,11 @@ nav {
 #emailForm input:focus {
     outline: 2px solid var(--bg-timeline);
     outline-offset: 1px;
+}
+
+#emailForm .auth-error {
+    max-width: none;
+    text-align: center;
 }
 
 #emailLoginBtn {
