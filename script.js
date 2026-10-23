@@ -1,7 +1,3 @@
-// Detección de "móvil en vertical" por JS.
-// Safari (iOS y macOS) no siempre recalcula bien la media feature
-// "orientation" de CSS al girar la pantalla, así que aquí se mide
-// directamente el ancho/alto reales de la ventana.
 (function () {
     const MOBILE_BREAKPOINT = 768;
 
@@ -35,7 +31,6 @@ if (logo) {
     }
 }
 
-//Bloque y Desbloqueo de la página
 (function () {
     const pass = "130425";
     const PASSWORD = pass;
@@ -49,6 +44,8 @@ if (logo) {
     const remember = document.getElementById("remember");
     const rememberDiv = document.getElementById("remember-div");
     const clearBtn = document.getElementById("clearBtn");
+    const openEmailBtn = document.getElementById("openEmailBtn");
+    const closeEmailBtn = document.getElementById("closeEmailBtn");
     const not = document.getElementById("notificaciones")
 
     if (localStorage.getItem(STORAGE_KEY) === "1") {
@@ -64,6 +61,17 @@ if (logo) {
         err.style.display = "none";
         unlockedScreen.classList.remove('hidden');
         not.classList.remove('hidden');
+
+        openEmailBtn?.addEventListener("click", () => {
+        emailForm.classList.add("open");
+        emailInput.focus();
+        });
+
+        closeEmailBtn?.addEventListener("click", () => emailForm.classList.remove("open"));
+
+        document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape") emailForm.classList.remove("open");
+        });
     }
 
     function lockPage() {

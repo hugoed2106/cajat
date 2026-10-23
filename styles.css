@@ -473,6 +473,17 @@ nav {
     cursor: pointer;
 }
 
+#closeEmailBtn {
+    position: absolute;
+    top: 8px;
+    right: 10px;
+    background: none;
+    border: none;
+    color: var(--logo-color);
+    font-size: 1.1rem;
+    cursor: pointer;
+}
+
 @keyframes emailPop {
     from { opacity: 0; transform: translate(-50%, -48%); }
     to   { opacity: 1; transform: translate(-50%, -50%); }
