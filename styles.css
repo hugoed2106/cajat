@@ -433,7 +433,7 @@ nav {
 }
 
 #emailForm input {
-    width: 100%;
+    width: 86%;
     padding: 10px 12px;
     border: 1px solid var(--border-color);
     border-radius: 8px;
