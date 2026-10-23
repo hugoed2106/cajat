@@ -32,95 +32,6 @@ if (logo) {
 }
 
 (function () {
-    const pass = "130425";
-    const PASSWORD = pass;
-    const STORAGE_KEY = "YA130425-unlocked-v1";
-
-    const lockedScreen = document.getElementById("locked");
-    const unlockedScreen = document.getElementById('unlocked');
-    const form = document.getElementById("passForm");
-    const input = document.getElementById("passInput");
-    const err = document.getElementById("passError");
-    const remember = document.getElementById("remember");
-    const rememberDiv = document.getElementById("remember-div");
-    const clearBtn = document.getElementById("clearBtn");
-    const openEmailBtn = document.getElementById("openEmailBtn");
-    const closeEmailBtn = document.getElementById("closeEmailBtn");
-    const not = document.getElementById("notificaciones")
-
-    if (localStorage.getItem(STORAGE_KEY) === "1") {
-        lockedScreen.classList.add("hidden");
-        unlockedScreen.classList.remove("hidden")
-    } else {
-        rememberDiv.classList.add('hidden');
-    }
-    
-    function unlockPage() {
-        if (remember.checked) localStorage.setItem(STORAGE_KEY, "1");
-        lockedScreen.classList.add("hidden");
-        err.style.display = "none";
-        unlockedScreen.classList.remove('hidden');
-        not.classList.remove('hidden');
-
-        openEmailBtn?.addEventListener("click", () => {
-        emailForm.classList.add("open");
-        emailInput.focus();
-        });
-
-        closeEmailBtn?.addEventListener("click", () => emailForm.classList.remove("open"));
-
-        document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape") emailForm.classList.remove("open");
-        });
-    }
-
-    function lockPage() {
-        lockedScreen.classList.remove("hidden");
-        err.style.display = "none";
-        unlockedScreen.classList.add('hidden');
-        not.classList.add('hidden');
-    }
-
-    form.addEventListener("submit", function (e) {
-        e.preventDefault();
-        const val = (input.value || "").trim();
-        const isPasswordCorrect = PASSWORD === "" ? val === "" : val === PASSWORD;
-
-        if (isPasswordCorrect) {
-            unlockPage();
-        } else {
-            err.style.display = "block";
-            input.value = "";
-            input.focus();
-        }
-    });
-
-    clearBtn.addEventListener("click", function () {
-        input.value = "";
-        err.style.display = "none";
-        input.focus();
-    });
-
-    input.addEventListener("keydown", function (e) {
-        if (e.key === "Enter") {
-            e.preventDefault();
-            form.requestSubmit();
-        }
-    });
-
-    document.addEventListener("keydown", function(e) {
-        if (e.ctrlKey && (e.key === "y" || e.key === "Y") || e.shiftKey && (e.key === "y" || e.key === "Y")) {
-            if(!unlockPage()) {
-                unlockPage();
-            } else {
-                lockPage();
-            }
-        }
-    });
-})();
-
-// Notis
-(function () {
     const not = document.getElementById('notificaciones');
     const notifies = document.getElementById('not-div');
     const close = document.getElementById('close')
@@ -155,7 +66,6 @@ if (logo) {
     })
 })();
 
-//Alternar tema de la página
 (function () {
     const themeBtn = document.getElementById('themeToggle');
 
@@ -176,8 +86,6 @@ if (logo) {
     });
 })();
 
-
-//Galería de Cartas
 (function () {
     const carta1 = document.getElementById('carta1');
     const carta2 = document.getElementById('carta2');
@@ -208,7 +116,6 @@ if (logo) {
 )
 })();
 
-//Galería de Regalo
 (function () {
     const r1 = document.getElementById('regalo1');
     const r2 = document.getElementById('regalo2');
@@ -250,7 +157,6 @@ if (logo) {
 )
 })();
 
-//Línea del Tiempo
 const optionButtons = document.querySelectorAll('.option-btn');
 const dynamicBoxes = document.querySelectorAll('.dynamic-content-box');
 
@@ -284,7 +190,6 @@ optionButtons.forEach(button => {
     });
 });
 
-//BUSCADOR
 const searchInput = document.getElementById('search');
 const searchResults = document.getElementById('searchResults');
 const box0 = document.getElementById('box0');
