@@ -48,18 +48,12 @@
             <p class="lock-subtitle">Inicia sesión con tu cuenta de Google para ver la página.</p>
 
             <form id="passForm" autocomplete="on">
-                <section hidden>
-                    <input id="passInput" type="password" inputmode="numeric" maxlength="6" pattern="[0-9]{6}" oninput="this.value = this.value.replace(/\D/g, '')" placeholder="Fecha Especial (DD/MM/AA)" required="" class="input pw">
-                    <div style="margin-top:.6rem;display:flex;gap:.5rem;align-items:center;justify-content:center;">
-                        <button type="submit" style="padding:.5rem .8rem;background:var(--bg-timeline);color:var(--text-color);border:none;border-radius:8px;cursor:pointer;font-weight:600;">
-                            Entrar
-                        </button>
-                        <button type="button" id="clearBtn" style="padding:.5rem .8rem;background:#000;border:none;border-radius:8px;cursor:pointer;color:#fff">
-                            Borrar
-                        </button>
-                    </div>
-                    <p id="passError" style="color:#c00;margin-top:.6rem;display:none;">Contraseña incorrecta</p>
-                </section>
+                <form id="emailForm">
+                    <input id="emailInput" type="email" placeholder="Correo" autocomplete="email" required>
+                    <input id="passwordInput" type="password" placeholder="Contraseña" autocomplete="current-password" required minlength="6" maxlength="12" spellcheck="false">
+                    <button type="submit" id="emailLoginBtn">Entrar</button>
+                    <button type="button" id="resetBtn">¿Olvidaste tu contraseña?</button>
+                </form>
 
                 <div class="social-login">
                     <button type="button" id="googleLoginBtn" class="google-btn">

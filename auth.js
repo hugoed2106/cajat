@@ -7,6 +7,8 @@ import {
   getRedirectResult,
   onAuthStateChanged,
   signOut,
+  signInWithEmailAndPassword,
+  sendPasswordResetEmail,
 } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-auth.js";
 import {
   getFirestore,
@@ -15,7 +17,6 @@ import {
   orderBy,
   onSnapshot,
 } from "https://www.gstatic.com/firebasejs/13.0.0/firebase-firestore.js";
-
 const firebaseConfig = {
   apiKey: "AIzaSyCJzSoPEMdaN1YPObBzRyONZrjunqRPw2Q",
   authDomain: "cajat-130425.firebaseapp.com",
@@ -55,7 +56,6 @@ function setLoading(isLoading) {
   if (googleBtn) googleBtn.disabled = isLoading;
 }
 
-// ---- Notificaciones (las publica el panel /admin) ----
 let unsubNotifs = null;
 
 function renderNotifs(docs) {
@@ -176,6 +176,61 @@ logoutBtn?.addEventListener("click", () => signOut(auth));
 getRedirectResult(auth).catch((err) => {
   console.error("Redirect error:", err);
   showError(friendlyError(err));
+});
+
+const emailForm = document.getElementById("emailForm");
+const emailInput = document.getElementById("emailInput");
+const passwordInput = document.getElementById("passwordInput");
+const emailLoginBtn = document.getElementById("emailLoginBtn");
+const resetBtn = document.getElementById("resetBtn");
+
+function emailErrorMessage(err) {
+  switch (err.code) {
+    case "auth/invalid-credential":
+    case "auth/wrong-password":
+    case "auth/user-not-found":
+      return "Correo o contraseña incorrectos.";
+    case "auth/invalid-email":
+      return "El correo no es válido.";
+    case "auth/user-disabled":
+      return "Esta cuenta está deshabilitada.";
+    case "auth/too-many-requests":
+      return "Demasiados intentos. Espera un momento e inténtalo de nuevo.";
+    case "auth/network-request-failed":
+      return "Error de red. Revisa tu conexión.";
+    default:
+      return "No se pudo iniciar sesión. Inténtalo de nuevo.";
+  }
+}
+
+emailForm?.addEventListener("submit", async (e) => {
+  e.preventDefault();
+  showError("");
+  emailLoginBtn.disabled = true;
+  try {
+    await signInWithEmailAndPassword(
+      auth,
+      emailInput.value.trim(),
+      passwordInput.value
+    );
+    passwordInput.value = "";
+  } catch (err) {
+    console.error("Auth error:", err);
+    showError(emailErrorMessage(err));
+  } finally {
+    emailLoginBtn.disabled = false;
+  }
+});
+
+resetBtn?.addEventListener("click", async () => {
+  const email = emailInput.value.trim();
+  if (!email) return showError("Escribe tu correo para enviarte el enlace.");
+  try {
+    await sendPasswordResetEmail(auth, email);
+    showError("Te enviamos un correo para restablecer la contraseña.");
+  } catch (err) {
+    showError(emailErrorMessage(err));
+  }
 });
 
 onAuthStateChanged(auth, async (user) => {
